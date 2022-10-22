@@ -10,8 +10,10 @@ import {
 } from "@react-navigation/native";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
+import { useCachedResources } from "../hooks/useCachedResources";
 
 import LinkingConfiguration from "./LinkingConfiguration";
+import OnboardingNavigator from "./OnboardingNavigator";
 import RootNavigator from "./RootNavigator";
 
 export default function Navigation({
@@ -19,12 +21,14 @@ export default function Navigation({
 }: {
   colorScheme: ColorSchemeName;
 }) {
+  const { onboarded } = useCachedResources();
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <RootNavigator />
+      {onboarded ? <RootNavigator /> : <OnboardingNavigator />}
     </NavigationContainer>
   );
 }
