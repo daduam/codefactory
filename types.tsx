@@ -9,6 +9,7 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { StackScreenProps } from "@react-navigation/stack";
 
 declare global {
   namespace ReactNavigation {
@@ -33,7 +34,7 @@ export type OnboardingStackParamList = {
 
 export type OnboardingStackScreenProps<
   Screen extends keyof OnboardingStackParamList
-> = NativeStackScreenProps<OnboardingStackParamList, Screen>;
+> = StackScreenProps<OnboardingStackParamList, Screen>;
 
 export type RootTabParamList = {
   TabOne: undefined;
