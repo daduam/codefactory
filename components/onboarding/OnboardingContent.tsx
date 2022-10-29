@@ -1,22 +1,27 @@
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  View,
+  ViewProps,
+} from "react-native";
 import Colors from "../../constants/Colors";
-import { Pagination, PaginationProps } from "../card";
 import { HeadingH4Text, ParagraphMediumText } from "../text";
 
 type OnboardingContentProps = {
   text: string;
   title: string;
   image: ImageSourcePropType;
-} & PaginationProps;
+} & ViewProps;
 
 export const OnboardingContent = ({
   text,
   title,
   image,
-  current,
+  ...props
 }: OnboardingContentProps) => {
   return (
-    <View style={styles.container}>
+    <View {...props} style={[props.style, styles.container]}>
       <Image source={image} resizeMode="contain" style={styles.image} />
 
       <View style={styles.body}>
@@ -26,8 +31,6 @@ export const OnboardingContent = ({
           {text}
         </ParagraphMediumText>
       </View>
-
-      <Pagination current={current} style={styles.pagination} />
     </View>
   );
 };
@@ -58,8 +61,5 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
     color: Colors.light.darkGray,
     marginTop: 8,
-  },
-  pagination: {
-    marginTop: 16,
   },
 });

@@ -29,9 +29,7 @@ const linking: LinkingOptions<RootStackParamList | OnboardingStackParamList> = {
       },
       Modal: "modal",
       NotFound: "*",
-      OnboardingZero: "onboarding/0",
-      OnboardingOne: "onboarding/1",
-      OnboardingTwo: "onboarding/2",
+      Onboarding: "onboarding",
     },
   },
 };
