@@ -1,35 +1,55 @@
-import { StyleSheet, View, ViewProps } from "react-native";
+import {
+  Animated,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+  ViewProps,
+} from "react-native";
 import Colors from "../../constants/Colors";
 
 export type PaginationProps = {
-  current: "left" | "middle" | "right";
+  data: Array<any>;
+  scrollX: Animated.Value;
 } & ViewProps;
 
-export const Pagination = ({ current, ...props }: PaginationProps) => {
+export const Pagination = ({ data, scrollX, ...props }: PaginationProps) => {
+  const { width } = useWindowDimensions();
+
   return (
     <View {...props} style={[props.style, styles.container]}>
-      <View style={[styles.inactive, current === "left" && styles.current]} />
-      <View style={[styles.inactive, current === "middle" && styles.current]} />
-      <View style={[styles.inactive, current === "right" && styles.current]} />
+      {data.map((_, idx) => {
+        const inputRange = [(idx - 1) * width, idx * width, (idx + 1) * width];
+
+        const dotWidth = scrollX.interpolate({
+          inputRange,
+          outputRange: [6, 16, 6],
+          extrapolate: "clamp",
+        });
+
+        const backgroundColor = scrollX.interpolate({
+          inputRange,
+          outputRange: ["#D5D4D4", Colors.light.secondary, "#D5D4D4"],
+          extrapolate: "clamp",
+        });
+
+        return (
+          <Animated.View
+            style={[styles.dot, { width: dotWidth, backgroundColor }]}
+            key={idx.toString()}
+          />
+        );
+      })}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: 52,
     flexDirection: "row",
-    justifyContent: "space-between",
   },
-  inactive: {
-    width: 6,
+  dot: {
     height: 6,
-    backgroundColor: "#D5D4D4",
-    borderRadius: 9999,
-  },
-  current: {
-    width: 16,
-    backgroundColor: Colors.light.secondary,
     borderRadius: 4,
+    marginHorizontal: 6,
   },
 });
