@@ -14,12 +14,13 @@ import { Button, SmallButton } from "../../components/button";
 import { Pagination } from "../../components/card";
 import { OnboardingContent } from "../../components/onboarding";
 import Colors from "../../constants/Colors";
-import { useCachedResources } from "../../hooks/useCachedResources";
+import { onboardUser } from "../../features/user/user-slice";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 import onboardingSlides from "./data";
 
 export const OnboardingScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { setUserOnboarded } = useCachedResources();
+  const dispatch = useAppDispatch();
   const { width } = useWindowDimensions();
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef<FlatList>(null);
@@ -54,13 +55,13 @@ export const OnboardingScreen = () => {
 
   const handleNextButtonPress = () => {
     if (isLastSlide()) {
-      setUserOnboarded();
+      dispatch(onboardUser());
     } else {
       slidesRef.current?.scrollToIndex({ index: currentIndex + 1 });
     }
   };
 
-  const handleSkipButtonPress = () => setUserOnboarded();
+  const handleSkipButtonPress = () => dispatch(onboardUser());
 
   return (
     <SafeAreaView style={styles.container}>
