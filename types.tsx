@@ -42,9 +42,20 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
 
 export type AuthStackParamList = {
   Login: undefined;
+  Signup: undefined;
 };
 
+export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =
+  NativeStackScreenProps<AuthStackParamList, Screen>;
+
 export type UserData = {
+  name?: string | null;
   email: string | null;
   token: string | null;
+};
+
+export type AuthParams = {
+  name?: string;
+  email: string;
+  password: string;
 };

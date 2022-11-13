@@ -7,9 +7,15 @@
 import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 
-import { OnboardingStackParamList, RootStackParamList } from "../types";
+import {
+  AuthStackParamList,
+  OnboardingStackParamList,
+  RootStackParamList,
+} from "../types";
 
-const linking: LinkingOptions<RootStackParamList | OnboardingStackParamList> = {
+const linking: LinkingOptions<
+  RootStackParamList | OnboardingStackParamList | AuthStackParamList
+> = {
   prefixes: [Linking.createURL("/")],
   config: {
     screens: {
@@ -30,6 +36,8 @@ const linking: LinkingOptions<RootStackParamList | OnboardingStackParamList> = {
       Modal: "modal",
       NotFound: "*",
       Onboarding: "onboarding",
+      Login: "login",
+      Signup: "signup",
     },
   },
 };
