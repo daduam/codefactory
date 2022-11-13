@@ -1,6 +1,7 @@
 import React from "react";
-import { Pressable, PressableProps, StyleSheet } from "react-native";
+import { Pressable, PressableProps, StyleSheet, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
+import { useAutoHitSlop } from "../../hooks/useAutoHitSlop";
 
 import { ButtonSmallText } from "../text";
 
@@ -10,8 +11,19 @@ type SmallButtonProps = {
 } & PressableProps;
 
 export const SmallButton = ({ text, align, ...props }: SmallButtonProps) => {
+  const { hitSlop, onLayout } = useAutoHitSlop();
+
   return (
-    <Pressable {...props} style={styles[align]}>
+    <Pressable
+      hitSlop={hitSlop}
+      onLayout={onLayout}
+      {...props}
+      style={({ pressed }) => [
+        styles[align],
+        props.style as ViewStyle,
+        { opacity: pressed ? 0.75 : 1 },
+      ]}
+    >
       <ButtonSmallText style={styles.text}>{text}</ButtonSmallText>
     </Pressable>
   );
@@ -22,12 +34,12 @@ const styles = StyleSheet.create({
     color: Colors.light.darkGray,
   },
   right: {
-    paddingLeft: 16,
+    alignSelf: "flex-end",
   },
   middle: {
-    paddingHorizontal: 16,
+    alignSelf: "center",
   },
   left: {
-    paddingRight: 16,
+    alignSelf: "flex-start",
   },
 });

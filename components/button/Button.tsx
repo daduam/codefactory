@@ -1,4 +1,4 @@
-import { Pressable, PressableProps, StyleSheet } from "react-native";
+import { Pressable, PressableProps, StyleSheet, ViewStyle } from "react-native";
 import Colors from "../../constants/Colors";
 
 import { ButtonMediumText } from "../text";
@@ -11,8 +11,13 @@ type ButtonProps = {
 export const Button = ({ text, level, ...props }: ButtonProps) => {
   return (
     <Pressable
-      style={[styles.container, styles[`${level}Container`]]}
       {...props}
+      style={({ pressed }) => [
+        styles.container,
+        styles[`${level}Container`],
+        props.style as ViewStyle,
+        { opacity: pressed ? 0.75 : 1 },
+      ]}
     >
       <ButtonMediumText style={styles[`${level}Text`]}>{text}</ButtonMediumText>
     </Pressable>

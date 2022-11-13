@@ -8,10 +8,10 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from "@react-navigation/native";
-import * as React from "react";
 import { ColorSchemeName } from "react-native";
-import { useCachedResources } from "../hooks/useCachedResources";
+import { useAppSelector } from "../hooks/useAppSelector";
 
+import { AuthNavigator } from "./AuthNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
 import OnboardingNavigator from "./OnboardingNavigator";
 import RootNavigator from "./RootNavigator";
@@ -21,14 +21,25 @@ export default function Navigation({
 }: {
   colorScheme: ColorSchemeName;
 }) {
-  const { onboarded } = useCachedResources();
+  const {
+    data: { token },
+    isOnboarded,
+  } = useAppSelector((state) => state.user);
 
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      {onboarded ? <RootNavigator /> : <OnboardingNavigator />}
+      {isOnboarded ? (
+        token ? (
+          <RootNavigator />
+        ) : (
+          <AuthNavigator />
+        )
+      ) : (
+        <OnboardingNavigator />
+      )}
     </NavigationContainer>
   );
 }
