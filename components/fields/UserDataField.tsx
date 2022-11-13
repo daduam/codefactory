@@ -1,18 +1,20 @@
+import { forwardRef } from "react";
 import { StyleSheet, TextInput, TextInputProps } from "react-native";
 import Colors from "../../constants/Colors";
 
-type UserDataFieldProps = {} & TextInputProps;
-
-export const UserDataField = ({ ...props }: UserDataFieldProps) => {
-  return (
-    <TextInput
-      placeholderTextColor={Colors.light.darkGray}
-      selectionColor={Colors.light.primary}
-      {...props}
-      style={[styles.textInput, styles.textInputText]}
-    />
-  );
-};
+export const UserDataField = forwardRef<TextInput, TextInputProps>(
+  (props, ref) => {
+    return (
+      <TextInput
+        placeholderTextColor={Colors.light.darkGray}
+        selectionColor={Colors.light.primary}
+        {...props}
+        ref={ref}
+        style={[styles.textInput, styles.textInputText]}
+      />
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   textInput: {

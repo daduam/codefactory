@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { UserData } from "../../types";
-import { mockApiLogin } from "./user-api";
+import { AuthParams, UserData } from "../../types";
+import { mockApiLogin, mockApiSignup } from "./user-api";
 
 interface UserState {
   status: "idle" | "loading" | "failed";
@@ -11,6 +11,7 @@ interface UserState {
 const initialState: UserState = {
   status: "idle",
   data: {
+    name: null,
     email: null,
     token: null,
   },
@@ -18,9 +19,18 @@ const initialState: UserState = {
 };
 
 export const login = createAsyncThunk(
-  "user/login",
-  async ({ email, password }: { email: string; password: string }) => {
-    const { data } = await mockApiLogin(email, password);
+  "user/LOGIN",
+  async (params: AuthParams) => {
+    const { data } = await mockApiLogin(params);
+
+    return data;
+  }
+);
+
+export const signup = createAsyncThunk(
+  "user/SIGNUP",
+  async (params: AuthParams) => {
+    const { data } = await mockApiSignup(params);
 
     return data;
   }
@@ -44,6 +54,16 @@ const userSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(login.rejected, (state) => {
+        state.status = "failed";
+      })
+      .addCase(signup.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(signup.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.data = action.payload;
+      })
+      .addCase(signup.rejected, (state) => {
         state.status = "failed";
       });
   },

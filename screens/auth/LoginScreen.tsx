@@ -14,8 +14,9 @@ import { HeadingH4Text, ParagraphMediumText } from "../../components/text";
 import Colors from "../../constants/Colors";
 import { login } from "../../features/user/user-slice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { AuthStackScreenProps } from "../../types";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }: AuthStackScreenProps<"Login">) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const passwordRef = useRef<TextInput>(null);
@@ -84,7 +85,7 @@ export const LoginScreen = () => {
         <SmallButton
           align="middle"
           text="Sign up"
-          onPress={() => console.log("Sign up")}
+          onPress={() => navigation.navigate("Signup")}
           style={styles.signup}
         />
       </KeyboardAvoidingView>

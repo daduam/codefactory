@@ -1,6 +1,6 @@
-import { UserData } from "../../types";
+import { AuthParams, UserData } from "../../types";
 
-export function mockApiLogin(email: string, _password: string) {
+export function mockApiLogin({ email }: AuthParams) {
   return new Promise<{ data: UserData }>((resolve) =>
     setTimeout(
       () =>
@@ -13,4 +13,20 @@ export function mockApiLogin(email: string, _password: string) {
       1000
     )
   );
+}
+
+export function mockApiSignup({ name, email }: AuthParams) {
+  return new Promise<{ data: UserData }>((resolve) => {
+    setTimeout(
+      () =>
+        resolve({
+          data: {
+            name,
+            email,
+            token: "jfaklrieowjrqnefklqenkwj",
+          },
+        }),
+      1500
+    );
+  });
 }
