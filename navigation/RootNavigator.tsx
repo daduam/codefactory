@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Colors from "../constants/Colors";
 
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
@@ -13,7 +14,13 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        contentStyle: {
+          backgroundColor: Colors.light.white,
+        },
+      }}
+    >
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}

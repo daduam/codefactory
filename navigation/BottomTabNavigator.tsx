@@ -1,16 +1,16 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-
 import { Pressable } from "react-native";
+
 import { HeaderWithBack } from "../components/headers";
+import { TabBar } from "../components/tab-bar";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ProfileScreen from "../screens/root/ProfileScreen";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import { RootTabParamList, RootTabScreenProps } from "../types";
-import TabBarIcon from "./TabBarIcon";
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -24,16 +24,13 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
+      tabBar={(props) => <TabBar {...props} />}
     >
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
           title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate("Modal")}
@@ -57,7 +54,6 @@ export default function BottomTabNavigator() {
         component={ProfileScreen}
         options={{
           header: (props) => <HeaderWithBack {...props} />,
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
 
@@ -66,7 +62,6 @@ export default function BottomTabNavigator() {
         component={TabTwoScreen}
         options={{
           title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
     </BottomTab.Navigator>
