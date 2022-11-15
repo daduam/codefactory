@@ -32,6 +32,7 @@ export type OnboardingStackParamList = {
 export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
+  Profile: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

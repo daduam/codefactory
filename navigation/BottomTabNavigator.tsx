@@ -3,8 +3,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
 import { Pressable } from "react-native";
+import { HeaderWithBack } from "../components/headers";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
+import ProfileScreen from "../screens/root/ProfileScreen";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import { RootTabParamList, RootTabScreenProps } from "../types";
@@ -49,6 +51,16 @@ export default function BottomTabNavigator() {
           ),
         })}
       />
+
+      <BottomTab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          header: (props) => <HeaderWithBack {...props} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
