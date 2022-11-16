@@ -1,12 +1,14 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Avatar } from "../../components/card";
 import Colors from "../../constants/Colors";
 
 const ProfileScreen = () => {
   return (
-    <SafeAreaView edges={["left", "right"]} style={styles.container}>
-      <Text>some text</Text>
-      <Text>some text</Text>
+    <SafeAreaView edges={["left", "right", "bottom"]} style={styles.container}>
+      <View style={styles.profileContainer}>
+        <Avatar style={styles.avatar} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -15,8 +17,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.light.white,
-    justifyContent: "space-between",
+  },
+  profileContainer: {
+    marginTop: 32,
     paddingHorizontal: 16,
+  },
+  avatar: {
+    alignSelf: "center",
   },
 });
 
