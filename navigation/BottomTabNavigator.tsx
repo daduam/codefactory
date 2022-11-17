@@ -4,12 +4,11 @@ import React from "react";
 import { Pressable } from "react-native";
 
 import { HeaderWithBack } from "../components/headers";
-import { TabBar } from "../components/tab-bar";
+import { TabBar } from "../components/tabbar";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ProfileScreen from "../screens/root/ProfileScreen";
+import { ProfileScreen, SettingsScreen } from "../screens/root";
 import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
 import { RootTabParamList, RootTabScreenProps } from "../types";
 
 /**
@@ -58,10 +57,10 @@ export default function BottomTabNavigator() {
       />
 
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Settings"
+        component={SettingsScreen}
         options={{
-          title: "Tab Two",
+          header: (props) => <HeaderWithBack {...props} />,
         }}
       />
     </BottomTab.Navigator>

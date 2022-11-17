@@ -26,14 +26,14 @@ const linking: LinkingOptions<
               TabOneScreen: "one",
             },
           },
-          TabTwo: {
-            screens: {
-              TabTwoScreen: "two",
-            },
-          },
           Profile: {
             screens: {
               ProfileScreen: "profile",
+            },
+          },
+          Settings: {
+            screens: {
+              SettingsScreen: "settings",
             },
           },
         },
