@@ -1,9 +1,16 @@
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SmallButton } from "../../components/button";
 import { Avatar, MenuItem } from "../../components/card";
 import Colors from "../../constants/Colors";
+import { logout } from "../../features/user/user-slice";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 
 const ProfileScreen = () => {
+  const dispatch = useAppDispatch();
+
+  const handleUserLogout = () => dispatch(logout());
+
   return (
     <SafeAreaView edges={["left", "right", "bottom"]} style={styles.container}>
       <View style={styles.profileContainer}>
@@ -14,6 +21,13 @@ const ProfileScreen = () => {
         <MenuItem text="Saved" onPress={() => {}} style={styles.mt_16} />
 
         <MenuItem text="Payment" onPress={() => {}} style={styles.mt_16} />
+
+        <SmallButton
+          text="Log out"
+          align="middle"
+          onPress={handleUserLogout}
+          style={styles.mt_16}
+        />
       </View>
     </SafeAreaView>
   );

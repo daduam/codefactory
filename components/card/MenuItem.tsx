@@ -8,7 +8,14 @@ type MenuItemProps = {
 
 export const MenuItem = ({ text, style, ...props }: MenuItemProps) => {
   return (
-    <Pressable {...props} style={[styles.container, style as ViewStyle]}>
+    <Pressable
+      {...props}
+      style={({ pressed }) => [
+        styles.container,
+        style as ViewStyle,
+        pressed && { backgroundColor: Colors.light.lightGray },
+      ]}
+    >
       <HeadingH4Text style={styles.text}>{text}</HeadingH4Text>
     </Pressable>
   );
