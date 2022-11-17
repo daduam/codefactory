@@ -31,6 +31,11 @@ const linking: LinkingOptions<
               TabTwoScreen: "two",
             },
           },
+          Profile: {
+            screens: {
+              ProfileScreen: "profile",
+            },
+          },
         },
       },
       Modal: "modal",

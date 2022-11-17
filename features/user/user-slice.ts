@@ -43,6 +43,9 @@ const userSlice = createSlice({
     onboardUser(state) {
       state.isOnboarded = true;
     },
+    logout() {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -69,6 +72,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { onboardUser } = userSlice.actions;
+export const { onboardUser, logout } = userSlice.actions;
 
 export default userSlice.reducer;
