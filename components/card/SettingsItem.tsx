@@ -1,16 +1,21 @@
 import { StyleSheet, View, ViewProps } from "react-native";
-import Colors from "../../constants/Colors";
+import { Switch } from "react-native-switch";
+import colors from "../../constants/Colors";
 import { SettingsNameIcon } from "../icon/SettingsNameIcon";
 import { HeadingH5Text } from "../text";
 
 type SettingsItemProps = {
   icon: "name";
   text: string;
+  toggleValue: boolean;
+  onToggleValueChange: (value: boolean) => undefined;
 } & ViewProps;
 
 export const SettingsItem = ({
   icon,
   text,
+  toggleValue,
+  onToggleValueChange,
   style,
   ...props
 }: SettingsItemProps) => {
@@ -26,7 +31,24 @@ export const SettingsItem = ({
         <HeadingH5Text style={styles.header}>{text}</HeadingH5Text>
       </View>
 
-      <View style={styles.button}></View>
+      <View style={styles.button}>
+        <Switch
+          value={toggleValue}
+          onValueChange={onToggleValueChange}
+          backgroundActive={colors.light.success}
+          backgroundInactive={colors.light.gray}
+          barHeight={8}
+          circleActiveColor={colors.light.success}
+          circleBorderActiveColor={colors.light.lightGray}
+          circleBorderInactiveColor={colors.light.lightGray}
+          circleBorderWidth={4}
+          circleInActiveColor={colors.light.gray}
+          circleSize={20}
+          renderActiveText={false}
+          renderInActiveText={false}
+          switchWidthMultiplier={1.6}
+        />
+      </View>
     </View>
   );
 };
@@ -35,9 +57,9 @@ const styles = StyleSheet.create({
   container: {
     height: 82,
     borderWidth: 1,
-    borderColor: Colors.light.gray,
+    borderColor: colors.light.gray,
     borderRadius: 16,
-    backgroundColor: Colors.light.white,
+    backgroundColor: colors.light.white,
     flexDirection: "row",
     paddingHorizontal: 16,
     paddingVertical: 8,
@@ -52,18 +74,19 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 32 / 2,
-    backgroundColor: Colors.light.secondary,
+    backgroundColor: colors.light.secondary,
     justifyContent: "center",
     alignItems: "center",
   },
   header: {
-    color: Colors.light.dark,
+    color: colors.light.dark,
     marginLeft: 12,
   },
   button: {
     width: 40,
     height: 40,
-    backgroundColor: "orange",
+    justifyContent: "center",
+    alignItems: "center",
     marginLeft: 8,
   },
 });

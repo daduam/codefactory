@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Image, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SettingsItem } from "../../components/card";
 import Colors from "../../constants/Colors";
 
 export const SettingsScreen = () => {
+  const [showNotifications, changeShowNotifications] = useState(false);
+
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
       <ScrollView style={styles.settings}>
@@ -12,7 +15,13 @@ export const SettingsScreen = () => {
           resizeMode="contain"
         />
 
-        <SettingsItem text="Notifications" icon="name" style={styles.mt_16} />
+        <SettingsItem
+          text="Notifications"
+          icon="name"
+          style={styles.mt_16}
+          toggleValue={showNotifications}
+          onToggleValueChange={changeShowNotifications as any}
+        />
       </ScrollView>
     </SafeAreaView>
   );
