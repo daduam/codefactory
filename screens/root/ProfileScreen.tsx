@@ -6,7 +6,7 @@ import Colors from "../../constants/Colors";
 import { logout } from "../../features/user/user-slice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 
-const ProfileScreen = () => {
+export const ProfileScreen = () => {
   const dispatch = useAppDispatch();
 
   const handleUserLogout = () => dispatch(logout());
@@ -49,5 +49,3 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
 });
-
-export default ProfileScreen;

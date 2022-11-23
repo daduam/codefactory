@@ -1,7 +1,7 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Pressable, StyleSheet, View } from "react-native";
 import Colors from "../../constants/Colors";
-import { ProfileIcon } from "../icon";
+import { ProfileIcon, WheelIcon } from "../icon";
 import { ParagraphMediumText } from "../text";
 
 export const TabBar = ({
@@ -48,6 +48,8 @@ export const TabBar = ({
 
         if (route.name === "Profile") {
           tabBarIcon = <ProfileIcon color={tintColor} />;
+        } else if (route.name === "Settings") {
+          tabBarIcon = <WheelIcon color={tintColor} />;
         }
 
         return (

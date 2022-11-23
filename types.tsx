@@ -31,8 +31,8 @@ export type OnboardingStackParamList = {
 
 export type RootTabParamList = {
   TabOne: undefined;
-  TabTwo: undefined;
   Profile: undefined;
+  Settings: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
@@ -53,6 +53,7 @@ export type UserData = {
   name?: string | null;
   email: string | null;
   token: string | null;
+  hasNotifications?: boolean | null;
 };
 
 export type AuthParams = {

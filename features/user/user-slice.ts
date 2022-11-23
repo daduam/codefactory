@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthParams, UserData } from "../../types";
 import { mockApiLogin, mockApiSignup } from "./user-api";
 
@@ -14,6 +14,7 @@ const initialState: UserState = {
     name: null,
     email: null,
     token: null,
+    hasNotifications: null,
   },
   isOnboarded: null,
 };
@@ -46,6 +47,9 @@ const userSlice = createSlice({
     logout() {
       return initialState;
     },
+    setHasNotifications(state, action: PayloadAction<boolean>) {
+      state.data.hasNotifications = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -72,6 +76,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { onboardUser, logout } = userSlice.actions;
+export const { onboardUser, logout, setHasNotifications } = userSlice.actions;
 
 export default userSlice.reducer;
