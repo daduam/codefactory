@@ -53,6 +53,7 @@ export type UserData = {
   name?: string | null;
   email: string | null;
   token: string | null;
+  hasNotifications?: boolean | null;
 };
 
 export type AuthParams = {

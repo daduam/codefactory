@@ -1,11 +1,16 @@
 import { StyleSheet, View, ViewProps } from "react-native";
 import { Switch } from "react-native-switch";
 import colors from "../../constants/Colors";
+import {
+  SettingsEmailIcon,
+  SettingsNotificationIcon,
+  SettingsPasswordIcon,
+} from "../icon";
 import { SettingsNameIcon } from "../icon/SettingsNameIcon";
 import { HeadingH5Text } from "../text";
 
 type SettingsItemProps = {
-  icon: "name";
+  icon: "name" | "email" | "password" | "notification";
   text: string;
   toggleValue: boolean;
   onToggleValueChange: (value: boolean) => undefined;
@@ -22,6 +27,9 @@ export const SettingsItem = ({
   let iconComponent = null;
 
   if (icon === "name") iconComponent = <SettingsNameIcon />;
+  else if (icon === "email") iconComponent = <SettingsEmailIcon />;
+  else if (icon === "password") iconComponent = <SettingsPasswordIcon />;
+  else iconComponent = <SettingsNotificationIcon />;
 
   return (
     <View {...props} style={[styles.container, style]}>
