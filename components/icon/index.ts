@@ -1,6 +1,7 @@
 export * from "./ChevronLeftIcon";
 export * from "./CoursesIcon";
 export * from "./NextIcon";
+export * from "./NotificationIcon";
 export * from "./PasswordIcon";
 export * from "./ProfileIcon";
 export * from "./SettingsEmailIcon";

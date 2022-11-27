@@ -1,6 +1,7 @@
 import {
   Rubik_400Regular,
   Rubik_500Medium,
+  Rubik_700Bold,
   useFonts,
 } from "@expo-google-fonts/rubik";
 import { FontAwesome } from "@expo/vector-icons";
@@ -10,7 +11,7 @@ import { useEffect, useState } from "react";
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  useFonts({ Rubik_400Regular, Rubik_500Medium });
+  useFonts({ Rubik_400Regular, Rubik_500Medium, Rubik_700Bold });
 
   // Load any resources or data that we need prior to rendering the app
   useEffect(() => {
