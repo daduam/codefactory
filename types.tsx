@@ -30,7 +30,7 @@ export type OnboardingStackParamList = {
 };
 
 export type RootTabParamList = {
-  TabOne: undefined;
+  Courses: undefined;
   Profile: undefined;
   Settings: undefined;
 };

@@ -21,9 +21,9 @@ const linking: LinkingOptions<
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          Courses: {
             screens: {
-              TabOneScreen: "one",
+              CoursesScreen: "courses",
             },
           },
           Profile: {
